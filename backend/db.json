@@ -1,14 +1,3 @@
 {
-  "users": [
-    {
-      "id": 2,
-      "name": "Steve Jobs",
-      "email": "sjobs@gmail.com"
-    },
-    {
-      "id": 3,
-      "name": "Albert Einstein",
-      "email": "aeinsteni@gmail.com"
-    }
-  ]
+  "users": []
 }

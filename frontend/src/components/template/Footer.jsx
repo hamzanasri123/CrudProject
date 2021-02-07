@@ -4,6 +4,6 @@ import './Footer.css'
 export default props =>
     <footer className="footer">
         <span>
-            Developed by <strong>Roberto de Figueiredo Minelli - 2019</strong> <i className="fa fa-code text-danger"></i>
+            Developed by <strong>Hamza Nasri &copy; 2021</strong> <i className="fa fa-code text-danger"></i>
         </span>
     </footer>

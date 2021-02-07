@@ -5,19 +5,19 @@ import Main from "../template/Main";
 const headerProps = {
   icon: "users",
   title: "Users",
-  subtitle: "User Registration: CRUD"
+  subtitle: "User Registration: CRUD Operation",
 };
 
 const baseUrl = "http://localhost:3001/users";
 const initialState = {
   user: { name: "", email: "" },
-  list: []
+  list: [],
 };
 export default class UserCrud extends Component {
   state = { ...initialState };
 
   componentWillMount() {
-    axios(baseUrl).then(resp => {
+    axios(baseUrl).then((resp) => {
       this.setState({ list: resp.data });
     });
   }
@@ -30,14 +30,14 @@ export default class UserCrud extends Component {
     const user = this.state.user;
     const method = user.id ? "put" : "post";
     const url = user.id ? `${baseUrl}/${user.id}` : baseUrl;
-    axios[method](url, user).then(resp => {
+    axios[method](url, user).then((resp) => {
       const list = this.getUpdatedList(resp.data);
       this.setState({ user: initialState.user, list });
     });
   }
 
   getUpdatedList(user, add = true) {
-    const list = this.state.list.filter(u => u.id !== user.id);
+    const list = this.state.list.filter((u) => u.id !== user.id);
     if (add) list.unshift(user);
     return list;
   }
@@ -59,7 +59,7 @@ export default class UserCrud extends Component {
                 className="form-control"
                 name="name"
                 value={this.state.user.name}
-                onChange={e => this.updateField(e)}
+                onChange={(e) => this.updateField(e)}
                 placeholder="Type the name..."
               />
             </div>
@@ -72,7 +72,7 @@ export default class UserCrud extends Component {
                 className="form-control"
                 name="email"
                 value={this.state.user.email}
-                onChange={e => this.updateField(e)}
+                onChange={(e) => this.updateField(e)}
                 placeholder="Type the email..."
               />
             </div>
@@ -81,12 +81,12 @@ export default class UserCrud extends Component {
         <hr />
         <div className="row">
           <div className="col-12 d-flex justify-content-end">
-            <button className="btn btn-primary" onClick={e => this.save(e)}>
+            <button className="btn btn-primary" onClick={(e) => this.save(e)}>
               Save
             </button>
             <button
               className="btn btn-secondary ml-2"
-              onClick={e => this.clear(e)}
+              onClick={(e) => this.clear(e)}
             >
               Cancel
             </button>
@@ -101,7 +101,7 @@ export default class UserCrud extends Component {
   }
 
   remove(user) {
-    axios.delete(`${baseUrl}/${user.id}`).then(resp => {
+    axios.delete(`${baseUrl}/${user.id}`).then((resp) => {
       const list = this.getUpdatedList(user, false);
       this.setState({ list });
     });
@@ -123,7 +123,7 @@ export default class UserCrud extends Component {
   }
 
   renderRows() {
-    return this.state.list.map(user => {
+    return this.state.list.map((user) => {
       return (
         <tr key={user.id}>
           <td>{user.id}</td>
@@ -131,7 +131,7 @@ export default class UserCrud extends Component {
           <td>{user.email}</td>
           <td>
             <button className="btn btn-warning" onClick={() => this.load(user)}>
-              <i className="fa fa-pencil"></i> 
+              <i className="fa fa-pencil"></i>
             </button>
             <button
               className="btn btn-danger"
